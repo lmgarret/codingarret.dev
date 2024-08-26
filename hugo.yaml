@@ -1,0 +1,9 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: lmgarret.dev
+theme : ["PaperMod"]
+
+params:
+  homeInfoParams:
+    Title: LM. Garret - Sofware Engineer
+    Content: Hi! I'm a Software Engineer and HomeLab enthusiast - this blog reflects both passions!
