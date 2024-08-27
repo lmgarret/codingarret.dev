@@ -1,0 +1,55 @@
+figure.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+figure.floatleft {
+    display: flex;
+    flex-direction: column;
+    float:left;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+figure.floatright {
+    display: flex;
+    flex-direction: column;
+    float:right;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+figure > a {
+    /* fix image with links being underlined */
+    text-decoration: none;
+    box-shadow: none !important;
+}
+
+.chroma {
+    background-color: unset;
+}
+
+.command code.language-bash>:first-child>.cl {
+    padding-left: 0 !important;
+    color: #d5d5d6 !important;
+}
+
+.command code.language-bash>.line>.cl {
+    padding-left: 10px;
+    color: #726e6e;
+}
+
+.command code.language-bash>:first-child::before {
+    content: "$ ";
+    padding-left: 10px;
+    color: brown;
+}
+
+.command .copy-btn {
+    float: right;
+    cursor: pointer;
+}
