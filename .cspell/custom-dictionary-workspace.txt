@@ -1,0 +1,20 @@
+# Custom Dictionary Words
+ACPI
+Asus
+asusctrl
+Bazzite
+CPPC
+cpufreq
+distros
+envycontrol
+floatleft
+floatright
+Lemmy
+Optimus
+pstate
+supergfx
+supergfxctl
+supergfxd
+TLDR
+UMAF
+unkillable

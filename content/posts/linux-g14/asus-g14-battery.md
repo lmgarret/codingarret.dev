@@ -5,7 +5,10 @@ cover:
   relative: false # To use relative path for cover image, used in hugo Page-bundles
 description: >
     A short guide to improve the battery life on Asus Zephyrus G14 running Linux.
-ShowToc: true
+showToc: true
+tocOpen: true
+author: LM. Garret
+UseHugoToc:
 ---
 
 ## Context
@@ -25,12 +28,14 @@ The G14 was marketed as a long battery life gaming laptop, which was a killer fe
 
 Switching to Linux unfortunately comes with the same symptoms: the battery drain would remain high out of the box, also causing the fans to kick in permanently..
 
-I'm going to share here two ways you can reduce this energy consumption to reach reasonnable levels (~-8w).
+I'm going to share here two ways you can reduce this energy consumption to reach reasonable levels (~-8w).
+
+> DISCLAIMER: I'm not responsible for any damage resulting from the use of this guide and the suggested tools. USE AT YOUR OWN RISK
 
 ## Turning off the Nvidia GPU
 {{< figure class="floatright" src="/images/posts/asus-g14-battery/optimus.jpg" alt="Nvidia Optimus" width="200px">}}
 
-The model I have comes with a RTX 2060 Max-Q. To be honest, I don't use it much anymore, thanks to getting Steam Deck. So personnally I chose to disable it altogether, but with user-friendly tools to restore it whenever I would need it.
+The model I have comes with a RTX 2060 Max-Q. To be honest, I don't use it much anymore, thanks to getting Steam Deck. So personally I chose to disable it altogether, but with user-friendly tools to restore it whenever I would need it.
 
 
 ### (Option 1) Using `supergfxctl`
@@ -41,7 +46,7 @@ sudo supergfxctl -s integrated
 ```
 and logging out. This could even be handled via a KDE widget!
 
-Unfortunately I could not get it to work properly on Aurora. Upon logging out, SDDM (the lockscreen display manager) would crash, forcing me to manually restart from the TTY with a dirty state for `supergfx`. Also, the `supergfxd` service it uses would often become unresponsive and unkillable.
+Unfortunately I could not get it to work properly on Aurora. Upon logging out, SDDM (the lock screen display manager) would crash, forcing me to manually restart from the TTY with a dirty state for `supergfx`. Also, the `supergfxd` service it uses would often become unresponsive and unkillable.
 
 As said before, I don't have much use for the Nvidia dGPU anymore; so having to reboot to enable it is not a real problem in my case. Hence the second solution here that I effectively use.
 
@@ -74,7 +79,7 @@ Scary name isn't it? We'll try to keep it simple.
 
 Modern AMD CPUs support a new performance scaling driver, called `amd-pstate`, that provides finer grain frequency management than the default ACPI driver. This driver allows the Linux kernel to directly communicate performance hints to the hardware. If you want to read more about this topic, you can read the corresponding [kernel.org page](https://www.kernel.org/doc/html//v6.7-rc2/admin-guide/pm/amd-pstate.html).
 
-Now if you have `asusctrl` installed and especially dug into the `rog-control-center` UI, you would have already noticed that you can tweak in the `System Perfomance Settings` the EPP hints; that does nothing unless you activate the `amd-pstate` driver we have been talking about.
+Now if you have `asusctrl` installed and especially dug into the `rog-control-center` UI, you would have already noticed that you can tweak in the `System Performance Settings` the EPP hints; that does nothing unless you activate the `amd-pstate` driver we have been talking about.
 
 {{< figure class="center" src="/images/posts/asus-g14-battery/rog-control-epp.png" alt="ROG Control Center - EPP settings" caption="EPP settings under System Performance Settings">}}
 
@@ -126,4 +131,28 @@ To change the mode, we will need to add the chosen kernel flag. In the case of F
 rpm-ostree kargs --editor
 ```
 
-and appending {{< i bash >}}amd_pstate=active{{< /i >}} if it's not already there.
+and appending {{< i bash >}}amd_pstate=active{{< /i >}} if it's not already there. After the command completes, reboot your laptop. You can check again with
+```command
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_driver
+amd-pstate-epp
+```
+that it is using the correct scaling driver.
+
+You can now have a look at the energy consumption; you can use the System Monitor app, CLI tools, a KDE widget on the task bar etc.. You should notice that the energy consumption under the energy saving mode and idle load should now gravitate around smaller values (~7w in my case).
+
+You can also monitor your CPU cores frequencies and check that it goes as low as 400MHz under idle load, and as high as 4000MHz (depending on the CPU):
+```command
+watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"
+```
+
+---
+
+And that's it for today! Enjoy your extensive battery life on your G14. A follow-up configuration to save even more energy would be enabling hibernation, but that's a completely different topic that would require its own guide.
+
+Here are some links for references on the topics that were covered in this guide:
+
+ - *asus-linux/supergfxctl*: https://gitlab.com/asus-linux/supergfxctl
+ - *bayasdev/envycontrol*: https://github.com/bayasdev/envycontrol
+ - *amd-pstate CPU Performance Scaling Driver*: https://www.kernel.org/doc/html//v6.7-rc2/admin-guide/pm/amd-pstate.html
+ - *AMD P-State and AMD P-State EPP Scaling Driver Configuration Guide*: https://lemmy.world/post/3081149
+ - *Reddit thread about enabling AMD PState on r/ZephyrusG14*: https://www.reddit.com/r/ZephyrusG14/comments/16vf3z2/2020_zephyrus_g14_linux_high_temperatures_while/ 
