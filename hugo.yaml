@@ -1,12 +1,12 @@
-baseURL: https://example.org/
+baseURL: https://codingarret.dev/
 languageCode: en-us
-title: lmgarret.dev
+title: CodinGarret.dev
 theme : ["PaperMod"]
 
 params:
   homeInfoParams:
-    Title: LM. Garret - Sofware Engineer
-    Content: Hi! I'm a Software Engineer and HomeLab enthusiast - this blog reflects both passions!
+    Title: Welcome to CodinGarret.dev!            
+    Content: Hi! I'm LM. Garret, a Software Engineer and HomeLab enthusiast - this blog reflects both passions!
   # showCodeCopyButtons: true
 #   assets:
 #     disableHLJS: true
