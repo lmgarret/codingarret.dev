@@ -10,8 +10,13 @@ params:
   # showCodeCopyButtons: true
 #   assets:
 #     disableHLJS: true
+  comments: true
 
 markup:
   highlight:
     lineNos: false
     noClasses: false
+
+services:
+  disqus:
+    shortname: lmgarret
