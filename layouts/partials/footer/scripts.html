@@ -47,4 +47,6 @@
         }
     });
 </script>
+{{ if not ( or (eq .Site.BaseURL "http://localhost:1313/") (eq .Site.BaseURL "http://127.0.0.1:1313/") ) }}
 <script defer src="https://umami.codingarret.dev/script.js" data-website-id="4bb24348-dc61-47eb-98b1-ca1589ec1078"></script>
+{{ end }}
