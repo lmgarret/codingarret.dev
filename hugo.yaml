@@ -20,4 +20,4 @@ markup:
 
 services:
   disqus:
-    shortname: lmgarret
+    shortname: codingarret-dev
