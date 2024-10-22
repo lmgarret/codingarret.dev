@@ -11,6 +11,7 @@ params:
 #   assets:
 #     disableHLJS: true
   comments: true
+  social: true # workaround for a deprecation not yet handled in PaperMod, see https://github.com/adityatelange/hugo-PaperMod/issues/1573#issuecomment-2415235233
 
 markup:
   highlight:
