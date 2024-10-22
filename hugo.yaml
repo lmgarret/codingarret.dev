@@ -18,6 +18,3 @@ markup:
     lineNos: false
     noClasses: false
 
-services:
-  disqus:
-    shortname: lmgarret

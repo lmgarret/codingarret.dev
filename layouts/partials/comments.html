@@ -1,23 +1,16 @@
-{{- $pc := .Site.Config.Privacy.Disqus -}}
-{{- if not $pc.Disable -}}
-{{ if .Site.Config.Services.Disqus.Shortname }}<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    	this.page.url = '{{ .Permalink }}';
-	this.page.identifier = '{{ .Permalink }}';
-	this.page.title = '{{ .Title }}';
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + {{ .Site.Config.Services.Disqus.Shortname }} + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+<div id="remark42"></div>
+<script>
+    var remark_config = {
+      host: 'https://remark42.codingarret.dev',
+      site_id: 'codingarret',
+      components: ['embed', 'last-comments'],
+      max_shown_comments: 100,
+      theme: 'dark',
+      page_title: '{{ .Title }}',
+      locale: 'en',
+      show_email_subscription: false,
+      simple_view: true,
+      no_footer: true
+    }
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>{{end}}
-{{- end -}}
+<script>!function(e,n){for(var o=0;o<e.length;o++){var r=n.createElement("script"),c=".js",d=n.head||n.body;"noModule"in r?(r.type="module",c=".mjs"):r.async=!0,r.defer=!0,r.src=remark_config.host+"/web/"+e[o]+c,d.appendChild(r)}}(remark_config.components||["embed"],document);</script>
