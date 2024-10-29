@@ -4,14 +4,14 @@ cover:
   image: "images/posts/vscode-podman/cover.jpg"
   relative: false # To use relative path for cover image, used in hugo Page-bundles
 description: >
-    A guide on using VSCode in a Podman dev container (toolbox)
+    A guide on using VSCode in a Podman devcontainer (toolbox)
 showToc: true
 tocOpen: true
 author: LM. Garret
 UseHugoToc:
 ---
 
-I wrote this guide since I installed a Fedora immutable desktop spin (Bazzite) on my desktop and decided to set it up for development as well. Since toolbox and Podman are already installed out of the box, I thought it would be interesting to go all the way in and develop using VSCode attached to a Podman dev container created by toolbox.
+I wrote this guide since I installed a Fedora immutable desktop spin (Bazzite) on my desktop and decided to set it up for development as well. Since toolbox and Podman are already installed out of the box, I thought it would be interesting to go all the way in and develop using VSCode attached to a Podman devcontainer created by toolbox.
 This unfortunately does not work perfectly out of the box, and I intend to keep this guide up-to-date with all the changes I had to perform in order to get my dev environment up and running!
 
 ## Using Podman instead of Docker
