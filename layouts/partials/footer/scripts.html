@@ -1,5 +1,6 @@
 <script>
-    document.querySelectorAll('.command > .highlight > pre > code').forEach((codeblock) => {
+    // adds the copy button to code blocks
+    document.querySelectorAll('.highlight > pre > code').forEach((codeblock) => {
         const container = codeblock.parentNode.parentNode;
 
         const copybutton = document.createElement('button');
@@ -35,7 +36,7 @@
         });
 
         if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
+            codeblock.appendChild(copybutton);
         } else if (container.parentNode.firstChild == container) {
             // td containing LineNos
         } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
@@ -46,6 +47,17 @@
             codeblock.parentNode.appendChild(copybutton);
         }
     });
+    // add an optional title to codeblocks (e.g. file name)
+    var els = document.getElementsByClassName("highlight");
+    for (var i = 0; i < els.length; i++) {
+      if (els[i].title.length) {
+        var newNode = document.createElement("div");
+        var textNode = document.createTextNode(els[i].title);
+        newNode.appendChild(textNode);
+        newNode.classList.add("highlight-title");
+        els[i].insertBefore(newNode, els[i].firstChild);
+      }
+    }
 </script>
 {{ if not ( or (eq .Site.BaseURL "http://localhost:1313/") (eq .Site.BaseURL "http://127.0.0.1:1313/") ) }}
 <script defer src="https://umami.codingarret.dev/script.js" data-website-id="4bb24348-dc61-47eb-98b1-ca1589ec1078"></script>

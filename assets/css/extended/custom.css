@@ -49,7 +49,10 @@ figure > a {
     color: brown;
 }
 
-.command .copy-btn {
-    float: right;
-    cursor: pointer;
+.highlight-title {
+    font-size: small;
+    padding: 0 0.5em 0 0.5em;
+    background: rgb(21, 21, 21);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
