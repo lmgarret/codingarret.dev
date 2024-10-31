@@ -41,13 +41,11 @@ I can now change the background image in `theme.conf`, replacing `background` va
 **Make sure to rename the theme** to something else to avoid conflicts, by editing the `Name` field in `metadata.desktop`. e.g. to `Breeze Fedora (Custom)`.
 
 {{< notice note >}}
-2024.10.20: If you are running the "Breeze" theme or its variant, you may have ran into the
-`Theme has an unknown property "fontSize"` error on your SDDM screen. The API was changed but the Breeze theme has not been updated. 
+2024.10.20: Since a recent update, if you are using the "Breeze" theme or one of its variants, you may encounter the `Theme has an unknown property "fontSize"` error on your SDDM screen. This is due to changes in the API that the Breeze theme has not yet been updated to accommodate.
 
-You can use this tutorial to fork the theme, edit `Main.qml` and replace every occurrences of:
- - `fontSize` with `font.pointSize` (except line 327)
- - `iconSource` with `icon.name`.
-
+You can follow this tutorial to fork the theme and edit the `Main.qml` file. Replace every occurrence of:
+- `fontSize` with `font.pointSize` (except on line 327)
+- `iconSource` with `icon.name`.
 
 {{< /notice >}}
 
