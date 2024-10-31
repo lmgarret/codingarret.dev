@@ -25,7 +25,7 @@ First, clone the notebook repository:
 git clone git@github.com:lmgarret/marimo-gps-heatmap.git
 ```
 
-The notebook requires [`marimo`](https://docs.marimo.io/getting_started/index.html) to run, and [`uv`](https://docs.astral.sh/uv/getting-started/installation/) is recommended. I'd recommend installing the latter first and then installing `marimo` with:
+The notebook requires [marimo](https://docs.marimo.io/getting_started/index.html) to run, and [uv](https://docs.astral.sh/uv/getting-started/installation/) is recommended. I'd recommend installing the latter first and then installing `marimo` with:
 ```command
 uv tool install marimo --upgrade
 ```
