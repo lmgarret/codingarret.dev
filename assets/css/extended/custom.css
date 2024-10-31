@@ -29,6 +29,12 @@ figure > a {
     box-shadow: none !important;
 }
 
+.post-content code {
+    border-radius: 6px;
+    color: #d5d5d6;
+    background: var(--code-block-bg);
+}
+
 .chroma {
     background-color: unset;
 }
