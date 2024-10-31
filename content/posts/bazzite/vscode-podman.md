@@ -1,5 +1,5 @@
 ---
-title: "VSCode in Podman dev container" # in any language you want
+title: "VSCode in Podman devcontainer" # in any language you want
 cover:
   image: "images/posts/vscode-podman/cover.jpg"
   relative: false # To use relative path for cover image, used in hugo Page-bundles
