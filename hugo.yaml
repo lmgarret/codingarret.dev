@@ -1,7 +1,7 @@
 baseURL: https://codingarret.dev/
 languageCode: en-us
 title: CodinGarret.dev
-theme : ["PaperMod"]
+theme : ["hugo-notice", "PaperMod"]
 
 params:
   homeInfoParams:
