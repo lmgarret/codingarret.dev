@@ -54,17 +54,36 @@ We will explore two options here:
  - the easy one: packaging an archive that we can manually install in the KDE SDDM settings
  - the involved one: building a RPM out of our theme to layer it in our system
 
-### Option 1: building a theme file
-This is fairly straightforward: in your working directory, package the archive with:
+### Option 1: building a theme file + bind mount
+This is the fairly easy option. We first create a theme archive. Then we need to workaround a [`SDDM` limitation](https://pagure.io/fedora-kde/SIG/issue/282): by default, the `SDDM` theme installer installs themes to the read-only `/usr/share/sddm` directory. Attempting to install the theme directly would throw us `Could not decompress the archive`. The [chosen workaround](https://discussion.fedoraproject.org/t/another-way-to-customize-sddm-under-kinoite/37773) is to mount bind a writable directory in-place of the default theme directory (`/usr/share/sddm`).
+
+Here are the steps to follow:
+
+1. In your working directory, package the theme archive with:
 ```command
 tar -czvf breeze-custom.tar.gz 02-breeze-fedora-custom
 ```
 
-Then head over to the KDE Settings app, search for `SDDM`. On the SDDM settings screen, click on `Install from File...`, and select the created archive.
+2. Copy the existing theme dir to a new (read-writable) one:
+```command
+sudo cp -r /usr/share/sddm /var
+```
+
+3. Edit `/etc/fstab` to mount bind your new directory in-place of the default themes one. At the end of the file, add 
+```
+/var/sddm /usr/share/sddm none rbind 0 0 
+```
+
+4. Remount your partitions with
+```command
+sudo mount -a
+```
+
+5. Install the theme file. Head over to the KDE Settings app, search for `SDDM`. On the SDDM settings screen, click on `Install from File...`, and select the created archive.
 
 {{< figure class="center" src="/images/posts/custom-sddm-theme/sddm-settings-install.png" alt="SDDM Settings" caption="'Install from File' in the top right corner">}}
 
-Then hit `Apply` and you're done! You can now log out of your session, and you should see your customized SDDM theme in action.
+Enter your sudo password when prompted, then hit `Apply`, re-enter your password, and you're done! You can now log out of your session, and you should see your customized SDDM theme in action.
 
 ### Option 2: as a RPM file
 Okay this one might be a bit too involved and unnecessary, I'll share it nonetheless since some may be interested in layering the theme into their image.
