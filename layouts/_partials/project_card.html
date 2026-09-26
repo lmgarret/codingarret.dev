@@ -1,0 +1,28 @@
+{{- $p := . -}}
+{{- $gh := partial "github_repo.html" $p.repo -}}
+{{- $url := $gh.html_url | default (printf "https://github.com/%s" $p.repo) -}}
+{{- $langColors := dict "Go" "#00add8" "Python" "#3572a5" "Kotlin" "#a97bff" "C#" "#178600" "TypeScript" "#3178c6" "JavaScript" "#f1e05a" "Shell" "#89e051" "Rust" "#dea584" -}}
+<article class="project-card">
+  <header>
+    <h3>{{ $p.title | default $gh.name }}</h3>
+    <span class="project-repo">{{ $p.repo }}</span>
+  </header>
+  <p class="project-pitch">{{ $p.pitch | default $gh.description }}</p>
+  {{- with $p.posts }}
+  <ul class="project-posts">
+    {{- range . }}
+    {{- with site.GetPage . }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{- end }}
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- if $gh }}
+  <footer class="project-meta">
+    {{- with $gh.language }}<span class="project-lang" style="--lang-color: {{ index $langColors . | default "var(--tertiary)" | safeCSS }}">{{ . }}</span>{{ end }}
+    <span title="Stars">★ {{ $gh.stargazers_count }}</span>
+    {{- with $gh.pushed_at }}<span>Updated {{ time.Format "Jan 2006" . }}</span>{{ end }}
+  </footer>
+  {{- end }}
+  <a class="entry-link" aria-label="{{ $p.title }} on GitHub" href="{{ $url }}"></a>
+</article>

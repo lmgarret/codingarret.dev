@@ -1,0 +1,15 @@
+{{- /* Returns GitHub API metadata for a repo ("owner/name"), or an empty dict on failure. */ -}}
+{{- $data := dict -}}
+{{- $api := site.Params.githubAPI | default "https://api.github.com" -}}
+{{- $headers := dict "Accept" "application/vnd.github+json" -}}
+{{- with os.Getenv "HUGO_GITHUB_TOKEN" }}
+{{- $headers = merge $headers (dict "Authorization" (printf "Bearer %s" .)) }}
+{{- end }}
+{{- with try (resources.GetRemote (printf "%s/repos/%s" $api .) (dict "headers" $headers)) }}
+{{- with .Err }}
+{{- warnf "projects: could not fetch %s: %s" $ . }}
+{{- else with .Value }}
+{{- $data = . | transform.Unmarshal }}
+{{- end }}
+{{- end }}
+{{- return $data -}}

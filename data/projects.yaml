@@ -1,0 +1,46 @@
+# Projects shown on /projects/ and, when `featured: true`, on the homepage.
+# `repo` is used to fetch live stats (stars, language, last push) from the
+# GitHub API at build time. `posts` optionally links related blog posts.
+groups:
+- name: AI & MCP
+  projects:
+  - repo: lmgarret/polar-flow-mcp
+    title: Polar Flow MCP
+    pitch: Unofficial MCP server for Polar Flow. Read and write your training diary from any MCP client.
+    featured: true
+  - repo: lmgarret/gotifacts
+    title: gotifacts
+    pitch: Self-hosted Go service that hosts static sites and serves a dynamic portal.
+
+- name: Karakeep
+  projects:
+  - repo: lmgarret/karakept-kmp
+    title: Karakept
+    pitch: Kotlin Multiplatform client for Karakeep. Manage your bookmarks on Android, macOS and Linux desktop.
+    featured: true
+  - repo: lmgarret/karaclean
+    title: karaclean
+    pitch: Docker sidecar that automatically cleans up Karakeep bookmarks based on declarative YAML rules.
+    featured: true
+
+- name: Home automation
+  projects:
+  - repo: lmgarret/jellyfin-mqtt-plugin
+    title: Jellyfin MQTT
+    pitch: Jellyfin plugin that syncs per-client playback state to MQTT, bidirectionally.
+    featured: true
+  - repo: lmgarret/ha-pcbu
+    title: Home Assistant PC Bio Unlock
+    pitch: Home Assistant custom integration for PC Bio Unlock.
+  - repo: lmgarret/py-pcbu
+    title: py-pcbu
+    pitch: Python package to interact with PC Bio Unlock. Automatically unlock your computer!
+
+- name: Wox launcher
+  projects:
+  - repo: lmgarret/wox-notion-plugin
+    title: Notion for Wox
+    pitch: Search Notion pages, jump to recent ones, and quick-capture notes from the Wox launcher.
+  - repo: lmgarret/wox-stopwatch-plugin
+    title: Stopwatch for Wox
+    pitch: A stopwatch plugin for Wox.

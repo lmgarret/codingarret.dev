@@ -3,6 +3,15 @@ locale: en-US
 title: CodinGarret.dev
 theme: ["hugo-notice", "PaperMod"]
 
+menus:
+  main:
+  - name: Posts
+    pageRef: /posts
+    weight: 10
+  - name: Projects
+    pageRef: /projects
+    weight: 20
+
 params:
   homeInfoParams:
     Title: Welcome to CodinGarret.dev!

@@ -6,6 +6,9 @@ on:
     - main
   pull_request:
   workflow_dispatch:
+  schedule:
+  # weekly rebuild to refresh project stats fetched from the GitHub API
+  - cron: '17 4 * * 1'
 
 permissions:
   contents: read
@@ -41,6 +44,8 @@ jobs:
 
     - name: Build
       run: hugo --minify
+      env:
+        HUGO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload artifact
       if: github.event_name != 'pull_request'
