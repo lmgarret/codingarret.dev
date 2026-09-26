@@ -1,6 +1,7 @@
 # Projects shown on /projects/ and, when `featured: true`, on the homepage.
 # `repo` is used to fetch live stats (stars, language, last push) from the
 # GitHub API at build time. `posts` optionally links related blog posts.
+# `site` overrides the repo's GitHub "Website" field (the card links there).
 # Logos are picked up from assets/images/projects/<repo-name>.* (or set `logo`
 # to another path under assets/); projects without one get a monogram.
 groups:
