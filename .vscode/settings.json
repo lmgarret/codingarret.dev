@@ -2,7 +2,7 @@
     "cSpell.customDictionaries": {
         "custom-dictionary-workspace": {
             "name": "custom-dictionary-workspace",
-            "path": "${workspaceFolder:lmgarret.dev}/.cspell/custom-dictionary-workspace.txt",
+            "path": "${workspaceFolder}/.cspell/custom-dictionary-workspace.txt",
             "addWords": true,
             "scope": "workspace"
         }
