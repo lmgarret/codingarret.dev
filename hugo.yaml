@@ -1,20 +1,15 @@
 baseURL: https://codingarret.dev/
-languageCode: en-us
+locale: en-US
 title: CodinGarret.dev
-theme : ["hugo-notice", "PaperMod"]
+theme: ["hugo-notice", "PaperMod"]
 
 params:
   homeInfoParams:
-    Title: Welcome to CodinGarret.dev!            
+    Title: Welcome to CodinGarret.dev!
     Content: Hi! I'm LM. Garret, a Software Engineer and HomeLab enthusiast - this blog reflects both passions!
-  # showCodeCopyButtons: true
-#   assets:
-#     disableHLJS: true
   comments: true
-  social: true # workaround for a deprecation not yet handled in PaperMod, see https://github.com/adityatelange/hugo-PaperMod/issues/1573#issuecomment-2415235233
 
 markup:
   highlight:
     lineNos: false
     noClasses: false
-

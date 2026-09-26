@@ -3,29 +3,31 @@ name: GitHub Pages
 permissions:
   contents: write
 
-on:                                              
+on:
   push:
     branches:
     - main
+  pull_request:
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1                  
+    - uses: actions/checkout@v7
       with:
         submodules: true
 
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v3
       with:
-        hugo-version: '0.136.2'
+        hugo-version: '0.166.0'
         extended: true
 
-    - name: Build                                
+    - name: Build
       run: hugo --minify
 
-    - name: Deploy                               
+    - name: Deploy
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v4
       with:
         cname: codingarret.dev
