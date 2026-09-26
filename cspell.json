@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "dictionaryDefinitions": [
+    {
+      "name": "custom-dictionary-workspace",
+      "path": "./.cspell/custom-dictionary-workspace.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": [
+    "custom-dictionary-workspace"
+  ],
+  "ignorePaths": [
+    "public/**",
+    "resources/**",
+    "themes/**"
+  ],
+  "ignoreRegExpList": [
+    "/^\\s*(`{3,}|~{3,})[\\s\\S]*?^\\s*\\1/gm",
+    "/`[^`\\n]+`/g"
+  ]
+}

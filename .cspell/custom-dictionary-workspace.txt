@@ -1,17 +1,26 @@
 # Custom Dictionary Words
 ACPI
+Archlinux
 Asus
 asusctrl
+bayasdev
 Bazzite
 CPPC
 cpufreq
+distrobox
 distros
 envycontrol
 floatleft
 floatright
+Inpher
+keymap
 Lemmy
+LUKS
 Optimus
+pinentry
 pstate
+Silverblue
+sudoer
 supergfx
 supergfxctl
 supergfxd
