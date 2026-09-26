@@ -1,0 +1,24 @@
+{{- define "main" }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}
+  <div class="post-description">{{ . | markdownify }}</div>
+  {{- end }}
+</header>
+
+{{- with .Content }}
+<div class="post-content md-content">{{ . }}</div>
+{{- end }}
+
+{{- range hugo.Data.projects.groups }}
+<section class="project-group">
+  <h2>{{ .name }}</h2>
+  <div class="project-grid">
+    {{- range .projects }}
+    {{- partial "project_card.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+{{- end }}

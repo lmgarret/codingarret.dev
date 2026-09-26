@@ -1,0 +1,42 @@
+{{- $p := . -}}
+{{- $gh := partial "github_repo.html" $p.repo -}}
+{{- $url := $gh.html_url | default (printf "https://github.com/%s" $p.repo) -}}
+{{- $langColors := dict "Go" "#00add8" "Python" "#3572a5" "Kotlin" "#a97bff" "C#" "#178600" "TypeScript" "#3178c6" "JavaScript" "#f1e05a" "Shell" "#89e051" "Rust" "#dea584" -}}
+{{- $title := $p.title | default $gh.name -}}
+{{- $logo := resources.GetMatch ($p.logo | default (printf "images/projects/%s.*" (path.Base $p.repo))) -}}
+<article class="project-card">
+  <header>
+    {{- with $logo }}
+    {{- $img := . }}
+    {{- if ne .MediaType.SubType "svg" }}{{ $img = .Resize "96x webp" }}{{ end }}
+    <img class="project-logo" src="{{ $img.RelPermalink }}" alt="" width="44" height="44" loading="lazy">
+    {{- else }}
+    <span class="project-logo project-monogram" aria-hidden="true"
+      style="--lang-color: {{ index $langColors ($gh.language | default "") | default "var(--tertiary)" | safeCSS }}">
+      {{- substr $title 0 1 | upper -}}
+    </span>
+    {{- end }}
+    <div>
+      <h3>{{ $title }}</h3>
+      <span class="project-repo">{{ $p.repo }}</span>
+    </div>
+  </header>
+  <p class="project-pitch">{{ $p.pitch | default $gh.description }}</p>
+  {{- with $p.posts }}
+  <ul class="project-posts">
+    {{- range . }}
+    {{- with site.GetPage . }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{- end }}
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- if $gh }}
+  <footer class="project-meta">
+    {{- with $gh.language }}<span class="project-lang" style="--lang-color: {{ index $langColors . | default "var(--tertiary)" | safeCSS }}">{{ . }}</span>{{ end }}
+    <span title="Stars">★ {{ $gh.stargazers_count }}</span>
+    {{- with $gh.pushed_at }}<span>Updated {{ time.Format "Jan 2006" . }}</span>{{ end }}
+  </footer>
+  {{- end }}
+  <a class="entry-link" aria-label="{{ $title }} on GitHub" href="{{ $url }}"></a>
+</article>
