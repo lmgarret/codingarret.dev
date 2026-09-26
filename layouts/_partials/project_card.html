@@ -2,10 +2,24 @@
 {{- $gh := partial "github_repo.html" $p.repo -}}
 {{- $url := $gh.html_url | default (printf "https://github.com/%s" $p.repo) -}}
 {{- $langColors := dict "Go" "#00add8" "Python" "#3572a5" "Kotlin" "#a97bff" "C#" "#178600" "TypeScript" "#3178c6" "JavaScript" "#f1e05a" "Shell" "#89e051" "Rust" "#dea584" -}}
+{{- $title := $p.title | default $gh.name -}}
+{{- $logo := resources.GetMatch ($p.logo | default (printf "images/projects/%s.*" (path.Base $p.repo))) -}}
 <article class="project-card">
   <header>
-    <h3>{{ $p.title | default $gh.name }}</h3>
-    <span class="project-repo">{{ $p.repo }}</span>
+    {{- with $logo }}
+    {{- $img := . }}
+    {{- if ne .MediaType.SubType "svg" }}{{ $img = .Resize "96x webp" }}{{ end }}
+    <img class="project-logo" src="{{ $img.RelPermalink }}" alt="" width="44" height="44" loading="lazy">
+    {{- else }}
+    <span class="project-logo project-monogram" aria-hidden="true"
+      style="--lang-color: {{ index $langColors ($gh.language | default "") | default "var(--tertiary)" | safeCSS }}">
+      {{- substr $title 0 1 | upper -}}
+    </span>
+    {{- end }}
+    <div>
+      <h3>{{ $title }}</h3>
+      <span class="project-repo">{{ $p.repo }}</span>
+    </div>
   </header>
   <p class="project-pitch">{{ $p.pitch | default $gh.description }}</p>
   {{- with $p.posts }}
@@ -24,5 +38,5 @@
     {{- with $gh.pushed_at }}<span>Updated {{ time.Format "Jan 2006" . }}</span>{{ end }}
   </footer>
   {{- end }}
-  <a class="entry-link" aria-label="{{ $p.title }} on GitHub" href="{{ $url }}"></a>
+  <a class="entry-link" aria-label="{{ $title }} on GitHub" href="{{ $url }}"></a>
 </article>

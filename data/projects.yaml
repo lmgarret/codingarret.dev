@@ -1,6 +1,8 @@
 # Projects shown on /projects/ and, when `featured: true`, on the homepage.
 # `repo` is used to fetch live stats (stars, language, last push) from the
 # GitHub API at build time. `posts` optionally links related blog posts.
+# Logos are picked up from assets/images/projects/<repo-name>.* (or set `logo`
+# to another path under assets/); projects without one get a monogram.
 groups:
 - name: AI & MCP
   projects:
