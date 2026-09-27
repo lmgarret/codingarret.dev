@@ -100,6 +100,32 @@ figure > a {
     gap: 0.8rem;
 }
 
+.project-card header > div {
+    flex-grow: 1;
+}
+
+.project-links {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 0.5rem;
+    align-self: flex-start;
+}
+
+.project-links a {
+    display: flex;
+    color: var(--secondary);
+}
+
+.project-links a:hover {
+    color: var(--primary);
+}
+
+.project-links svg {
+    width: 18px;
+    height: 18px;
+}
+
 .project-logo {
     flex-shrink: 0;
     width: 44px;
